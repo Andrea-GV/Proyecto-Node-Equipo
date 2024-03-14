@@ -87,5 +87,11 @@
     "quantity": 1,
     "typeProduct": "Encurtidos" ,
     "shelf": " ."
+},
+{
+    "name": "Tampax compact",
+    "quantity": 18,
+    "typeProduct": "Higiene" ,
+    "shelf": " ."
 }
 ]
