@@ -8,8 +8,10 @@ const { connectMongo } = require("./src/data/mongo");
 //const { configCloudinary } = require("./src/utils/cloudinary/config");
 // 1.3 las rutas:
 const userRouter = require("./src/api/routes/user.routes");
-const trackRouter = require("./src/api/routes/track.routes");
-const albumRouter = require("./src/api/routes/album.routes");
+const aisleRouter = require("./src/api/routes/aisle.routes");
+const productRouter = require("./src/api/routes/product.routes");
+const shelfRouter = require("./src/api/routes/shelf.routes");
+const shopRouter = require("./src/api/routes/shop.routes");
 const { notFoundHandler, errorHandler } = require('./src/api/middlewares/error.middleware');
 
 
@@ -52,8 +54,10 @@ app.get("/", (req, res) => {
 });
 // 3.2 las rutas de mis datos
 app.use("/user", userRouter);
-app.use("/track", trackRouter);
-app.use("/album", albumRouter);
+app.use("/aisle", aisleRouter);
+app.use("/product", productRouter);
+app.use("/shelf", shelfRouter);
+app.use("/shop", shopRouter);
 
 // 4. MANEJO DE ERRORES -> instanciamos las funciones de error.middleware
 app.use(notFoundHandler);

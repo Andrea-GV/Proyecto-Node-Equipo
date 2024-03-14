@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 // Definición del esquema del álbum
-const albumSchema = new mongoose.Schema({
+const aisleSchema = new mongoose.Schema({
   product: {
     type: String,
     required: true,
@@ -9,7 +9,10 @@ const albumSchema = new mongoose.Schema({
   number: {
     type: Number,
     required: true,
-  }
+  },shop: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Shop",
+  },
 });
 
 const Aisle = mongoose.model("Aisle", aisleSchema);
