@@ -1,12 +1,12 @@
-const Album = require("../models/album.model");
+const Shop = require("../models/shop.model");
 const { HTTPSTATUSCODE } = require("../../utils/httpStatusCode");
 
-const createAlbum = async (req, res, next) => {
+const createShop = async (req, res, next) => {
   try {
-    //const album = await Album.create(req.body);
+    //const shop = await Shop.create(req.body);
     const { title, artist, releaseYear, genre } = req.body;
     const coverImage = req.file ? req.file.path : '';
-    const album = await Album.create({
+    const shop = await Shop.create({
       title,
       artist,
       releaseYear,
@@ -16,34 +16,34 @@ const createAlbum = async (req, res, next) => {
     res.status(201).json({
       status: 201,
       message: HTTPSTATUSCODE[201],
-      data: album,
+      data: shop,
     });
   } catch (error) {
     next(error);
   }
 };
 
-const getAllAlbums = async (req, res, next) => {
+const getAllShops = async (req, res, next) => {
   try {
-    const albums = await Album.find();
+    const shops = await Shop.find();
     res.status(200).json({
       status: 200,
       message: HTTPSTATUSCODE[200],
-      data: albums,
+      data: shops,
     });
   } catch (error) {
     next(error);
   }
 };
 
-const getAlbumById = async (req, res, next) => {
+const getShopById = async (req, res, next) => {
   try {
-    const album = await Album.findById(req.params.id);
-    if (album) {
+    const shop = await Shop.findById(req.params.id);
+    if (shop) {
       res.status(200).json({
         status: 200,
         message: HTTPSTATUSCODE[200],
-        data: album,
+        data: shop,
       });
     } else {
       res.status(404).json({
@@ -56,16 +56,16 @@ const getAlbumById = async (req, res, next) => {
   }
 };
 
-const updateAlbum = async (req, res, next) => {
+const updateShop = async (req, res, next) => {
   try {
-    const album = await Album.findByIdAndUpdate(req.params.id, req.body, {
+    const shop = await Shop.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
     });
-    if (album) {
+    if (shop) {
       res.status(200).json({
         status: 200,
         message: HTTPSTATUSCODE[200],
-        data: album,
+        data: shop,
       });
     } else {
       res.status(404).json({
@@ -78,7 +78,7 @@ const updateAlbum = async (req, res, next) => {
   }
 };
 
-const addAlbumCover = async (req, res, next) => {
+const addShopCover = async (req, res, next) => {
   try {
     if (!req.file) {
       return res.status(400).json({
@@ -86,17 +86,17 @@ const addAlbumCover = async (req, res, next) => {
         message: 'No file in the request.'
       });
     }
-    const album = await Album.findByIdAndUpdate(
+    const shop = await Shop.findByIdAndUpdate(
       req.params.id,
       { coverImage: req.file.path },
       { new: true }
     );
 
-    if (album) {
+    if (shop) {
       res.status(200).json({
         status: 200,
         message: HTTPSTATUSCODE[200],
-        data: album,
+        data: shop,
       });
     } else {
       res.status(404).json({
@@ -109,10 +109,10 @@ const addAlbumCover = async (req, res, next) => {
   }
 };
 
-const deleteAlbum = async (req, res, next) => {
+const deleteShop = async (req, res, next) => {
   try {
-    const album = await Album.findByIdAndDelete(req.params.id);
-    if (album) {
+    const shop = await Shop.findByIdAndDelete(req.params.id);
+    if (shop) {
       res.status(204).json({
         status: 204,
         message: HTTPSTATUSCODE[204],
@@ -129,10 +129,10 @@ const deleteAlbum = async (req, res, next) => {
 };
 
 module.exports = {
-  createAlbum,
-  getAllAlbums,
-  getAlbumById,
-  updateAlbum,
-  addAlbumCover,
-  deleteAlbum,
+  createShop,
+  getAllShops,
+  getShopById,
+  updateShop,
+  addShopCover,
+  deleteShop,
 };
