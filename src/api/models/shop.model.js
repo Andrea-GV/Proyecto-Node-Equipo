@@ -11,7 +11,7 @@ const shopSchema = new mongoose.Schema({
     required: true,
   },
   schedule: {
-    type: Number,
+    type: String,
     required: true,
   },
   type: {

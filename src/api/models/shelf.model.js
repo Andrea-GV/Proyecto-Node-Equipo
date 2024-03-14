@@ -11,7 +11,7 @@ const shelfSchema = new mongoose.Schema({
   },
   shelf: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Shelf",
+    ref: "Aisle",
   },
 });
 
