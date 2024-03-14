@@ -3,6 +3,7 @@ const { HTTPSTATUSCODE } = require("../../utils/httpStatusCode");
 
 const createShop = async (req, res, next) => {
   try {
+<<<<<<< HEAD
   const shop = await Shop.create(req.body);
     const { title, artist, releaseYear, genre } = req.body;
     const coverImage = req.file ? req.file.path : '';
@@ -13,6 +14,20 @@ const createShop = async (req, res, next) => {
     //   genre,
     //   coverImage
     // });
+=======
+    const shop = await Shop.create(req.body);
+    const { title, artist, releaseYear, genre } = req.body;
+    const coverImage = req.file ? req.file.path : '';
+    /*const shop = await Shop.create({
+      name,
+      location,
+      city,
+      schelude,
+      type,
+      contact,
+      logo
+    });*/
+>>>>>>> 62595bdb443ad645d124aa80f13a8a4ad0fc76f5
     res.status(201).json({
       status: 201,
       message: HTTPSTATUSCODE[201],

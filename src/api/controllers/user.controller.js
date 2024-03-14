@@ -3,6 +3,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { setError } = require("../../utils/error.util");
 const { HTTPSTATUSCODE } = require("../../utils/httpStatusCode");
+const { jwtDecode } = require("jwt-decode");
 
 const register = async (req, res, next) => {
   try {
@@ -25,14 +26,17 @@ const register = async (req, res, next) => {
 const login = async (req, res, next) => {
   try {
     const userInfo = await User.findOne({ email: req.body.email });
-    console.log(bcrypt.compareSync(req.body.password, userInfo.password));
+    console.log(
+      "is password ok?",
+      bcrypt.compareSync(req.body.password, userInfo.password)
+    );
     if (bcrypt.compareSync(req.body.password, userInfo.password)) {
       userInfo.password = "*************"; // ocultamos el dato password en la respuesta por seguridad
       const token = jwt.sign(
         {
           id: userInfo._id,
           email: userInfo.email,
-          token: userInfo.token,
+          role: userInfo.role,
         },
         process.env.JWT_SECRET,
         { expiresIn: "1d" }
@@ -44,7 +48,7 @@ const login = async (req, res, next) => {
     } else {
       return res.json({
         status: 400,
-        message: "Contraseña incorrecta"+HTTPSTATUSCODE[400],
+        message: "El password es incorrecto",
         data: null,
       });
     }
@@ -65,4 +69,13 @@ const logout = (req, res, next) => {
   }
 };
 
-module.exports = { register, login, logout };
+const isAdmin = (req, res, next) => {
+  const data = req.headers.authorization.split(" ");
+  console.log(data);
+  const decoded = jwtDecode(data[1]);
+  const admin = decoded.role == "admin" ? true : false;
+  console.log("isAdmin", admin);
+  return admin;
+};
+
+module.exports = { register, login, logout, isAdmin };
