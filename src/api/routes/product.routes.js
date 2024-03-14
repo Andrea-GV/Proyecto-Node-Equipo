@@ -15,7 +15,7 @@ const {
 const { isAuth } = require("../middlewares/auth.middleware");
 
 
-productRouter.post("/", createProduct);
+productRouter.post("/", [upload.single("photoImage"), uploadToCloudinary], createProduct);
 productRouter.get("/", getAllProducts);
 productRouter.get("/:id", getProductById);
 productRouter.patch("/:id", updateProduct);

@@ -33,19 +33,7 @@ app.use((req, res, next) => {
   next();
 });
 // 2.3 cors (https://developer.mozilla.org/es/docs/Web/HTTP/CORS)
-app.use(cors()); // no hay restricciones
-/*
- * La linea inferior sería un ejemplo de uso de cors, en el que solo
- * permitimos peticiones de esas dos direcciones IP
- * Este concepto se conoce como whitelisting
- */
-/* app.use(cors({
-  origin: [
-    '0.0.0.0',
-    'http://localhost:4200'
-  ],
-  credentials: true,
-})); */
+app.use(cors());
 
 // 3. ENDPOINTS
 

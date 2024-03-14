@@ -86,7 +86,7 @@ const addShopCover = async (req, res, next) => {
     if (!req.file) {
       return res.status(400).json({
         status: 400,
-        message: 'No file in the request.'
+        message: "No file in the request.",
       });
     }
     const shop = await Shop.findByIdAndUpdate(
