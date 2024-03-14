@@ -7,6 +7,7 @@ const cors = require("cors");
 const { connectMongo } = require("./src/data/mongo");
 //const { configCloudinary } = require("./src/utils/cloudinary/config");
 // 1.3 las rutas:
+// const userRouter = require("./src/api/routes/user.routes");
 const userRouter = require("./src/api/routes/user.routes");
 const aisleRouter = require("./src/api/routes/aisle.routes");
 const productRouter = require("./src/api/routes/product.routes");

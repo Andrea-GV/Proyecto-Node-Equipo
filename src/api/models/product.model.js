@@ -13,6 +13,10 @@ const productSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
+  photoImage: {
+    type: String,
+    required: false,
+  },
   shelf: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Shelf",
