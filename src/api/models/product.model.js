@@ -9,6 +9,10 @@ const productSchema = new mongoose.Schema({
     type: Number,
     required: false,
   },
+  typeProduct: {
+    type: String,
+    required: false,
+  },
   shelf: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Shelf",
