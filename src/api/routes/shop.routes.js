@@ -14,11 +14,11 @@ const {
 } = require("../middlewares/file.middleware");
 const { isAuth } = require("../middlewares/auth.middleware");
 
-shopRouter.post("/", [upload.single("logoImage"), uploadToCloudinary], createShop);
+shopRouter.post("/", [ isAuth, upload.single("logoImage"), uploadToCloudinary], createShop);
 shopRouter.get("/", getAllShops);
 shopRouter.get("/:id", getShopById);
-shopRouter.patch("/:id", updateShop);
-shopRouter.delete("/:id", deleteShop);
-shopRouter.patch("/logo/:id", [upload.single("logoImage"), uploadToCloudinary], addShopCover);
+shopRouter.patch("/:id", [isAuth],updateShop);
+shopRouter.delete("/:id", [isAuth],deleteShop);
+shopRouter.patch("/logo/:id", [isAuth ,upload.single("logoImage"), uploadToCloudinary], addShopCover);
 
 module.exports = shopRouter;

@@ -10,11 +10,11 @@ const { upload, uploadToCloudinary } = require('../middlewares/file.middleware')
 const { isAuth } = require('../middlewares/auth.middleware')
 
 // Ruta para crear un nuevo álbum
-aisleRouter.post("/", createAisle);
+aisleRouter.post("/",[isAuth], createAisle);
 aisleRouter.get("/", getAllAisles);
 aisleRouter.get("/:id", getAisleById);
-aisleRouter.put("/:id", updateAisle);
-aisleRouter.patch("/:id", updateAisle);
-aisleRouter.delete("/:id", deleteAisle);
+aisleRouter.put("/:id", [isAuth], updateAisle);
+aisleRouter.patch("/:id", [isAuth] ,updateAisle);
+aisleRouter.delete("/:id", [isAuth] ,deleteAisle);
 
 module.exports = aisleRouter;

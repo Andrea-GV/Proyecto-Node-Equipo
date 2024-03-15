@@ -9,10 +9,10 @@ const {
 } = require("../controllers/shelf.controller");
 const { isAuth } = require('../middlewares/auth.middleware');
 
-shelfRouter.post("/", createShelf);
+shelfRouter.post("/", [isAuth] ,createShelf);
 shelfRouter.get("/", getAllShelves);
 shelfRouter.get("/:id", getShelfById);
-shelfRouter.patch("/:id", updateShelf);
-shelfRouter.delete("/:id", deleteShelf);
+shelfRouter.patch("/:id", [isAuth], updateShelf);
+shelfRouter.delete("/:id", [isAuth], deleteShelf);
 
 module.exports = shelfRouter;
