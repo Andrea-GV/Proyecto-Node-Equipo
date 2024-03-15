@@ -15,11 +15,11 @@ const {
 const { isAuth } = require("../middlewares/auth.middleware");
 
 
-productRouter.post("/", [upload.single("photoImage"), uploadToCloudinary], createProduct);
+productRouter.post("/", [isAuth ,upload.single("photoImage"), uploadToCloudinary], createProduct);
 productRouter.get("/", getAllProducts);
 productRouter.get("/:id", getProductById);
-productRouter.patch("/:id", updateProduct);
-productRouter.delete("/:id", deleteProduct);
-productRouter.patch("/photo/:id", [upload.single("photoImage"), uploadToCloudinary], addProductCover);
+productRouter.patch("/:id", [isAuth], updateProduct);
+productRouter.delete("/:id", [isAuth] ,deleteProduct);
+productRouter.patch("/photo/:id", [isAuth ,upload.single("photoImage"), uploadToCloudinary], addProductCover);
 
 module.exports = productRouter;
